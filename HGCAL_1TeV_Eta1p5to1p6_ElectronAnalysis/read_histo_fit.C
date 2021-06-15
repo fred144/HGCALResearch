@@ -1,0 +1,64 @@
+
+
+
+{
+ // also attempt at fiddling with stats box
+ gStyle->SetOptFit(1111);
+ 
+ TFile *f = TFile::Open("histo1516eres.root");
+ //TFile *f=new TFile("histo.root"); 
+ //f->cd();
+ TH1F *h=(TH1F*)f->Get("h1");
+ peak=h->GetMean() ;
+ sig=h->GetStdDev();
+ cout << peak << "  " << sig << endl;
+ h->Fit("gaus", "","",880,1040);
+ h->SetFillColorAlpha(38, 1);
+ h->SetXTitle("Energy (Gev)");
+ h->SetYTitle("Number of Entries / 8 GeV");
+ TPaveStats *ptstats = new TPaveStats(0.8,0.7,0.98,0.935,"brNDC");
+    ptstats->SetName("stats");
+    ptstats->SetBorderSize(1);
+    ptstats->SetFillColor(0);
+    ptstats->SetTextAlign(12);
+    ptstats->SetTextFont(42);
+    ptstats->SetTextSize(0.02736842);
+    ptstats->SetOptStat(1110);
+    ptstats->SetOptFit(1111);
+    ptstats->Draw();
+    h->GetListOfFunctions()->Add(ptstats);
+    ptstats->SetParent(h);
+
+
+
+// //void read_histo()
+// {
+// // a super simplistic macro to read in a histo, and fit gaus with fit range set to some random range given the original histo mean and rms
+// gStyle->SetOptFit(1111);
+// TFile *f = TFile::Open("histo1516eres.root");
+// //TFile *f=new TFile("histo.root");
+// //f->cd();
+// TH1F *h=(TH1F*)f->Get("h1");
+// //Double peak;
+// //peak=0.0;
+// peak=h->GetMean();
+// sig=h->GetStdDev();
+// cout << peak << "  " << sig << endl;
+// h->GetXaxis()->SetRangeUser(700,1100);
+// h->Fit("gaus", "","",850,1040);
+// //h->SetXTitle("Energy (Gev)");
+// //h->SetYTitle("Number of Entries/ 5 GeV");
+// TPaveStats *ptstats = new TPaveStats(0.8,0.7,0.98,0.935,"brNDC");
+//    ptstats->SetName("stats");
+//    ptstats->SetBorderSize(1);
+//    ptstats->SetFillColor(0);
+//    ptstats->SetTextAlign(12);
+//    ptstats->SetTextFont(42);
+//    ptstats->SetTextSize(0.02736842);
+//    ptstats->SetOptStat(1110);
+//    ptstats->SetOptFit(1111);
+//    ptstats->Draw();
+//    h->GetListOfFunctions()->Add(ptstats);
+//    ptstats->SetParent(h);
+// }
+
