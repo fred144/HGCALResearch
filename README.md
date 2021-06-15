@@ -15,6 +15,6 @@ The main cone algorithm used in the .C analysis files originated from one of the
 
 Redid the analysis with updated detector parameters; CMSSW_11_3_0_pre5 geometry 2026D76 
 
-New histograms are inside folders prefixed with new_
+The histograms have been redacted per CERN guidlines, contact author for access. 
 
 -Fred G. 
